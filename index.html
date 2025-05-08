@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bassam AI Pro - الصفحة الموحدة</title>
+  <meta charset="UTF-8" />
+  <title>Bassam AI Pro - الذكاء التحليلي</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     body {
       font-family: 'Cairo', sans-serif;
@@ -13,137 +13,233 @@
       color: white;
       margin: 0;
       padding: 0;
-      text-align: center;
     }
     .header {
-      background-color: #1f1f1f;
+      background: #1f1f1f;
       padding: 20px;
-      font-size: 26px;
+      text-align: center;
+      font-size: 24px;
       font-weight: bold;
-      border-bottom: 1px solid #333;
     }
-    .nav {
+    .nav, .kpi-bar {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
+      flex-wrap: wrap;
       background-color: #1e1e1e;
       padding: 10px;
-      border-bottom: 1px solid #444;
     }
     .nav button {
-      background-color: #333;
-      color: white;
-      border: none;
       margin: 5px;
       padding: 10px 20px;
-      border-radius: 6px;
+      border: none;
+      background: #2a2a2a;
+      color: white;
+      border-radius: 5px;
       cursor: pointer;
     }
     .nav button:hover {
-      background-color: #00b3b3;
+      background: #00b3b3;
     }
     .section {
       display: none;
-      padding: 30px 10px;
+      padding: 20px;
     }
     .section.active {
       display: block;
     }
     .card {
       background: #1f1f1f;
+      margin: 20px auto;
       padding: 20px;
       border-radius: 10px;
-      margin: 20px auto;
       max-width: 700px;
-      box-shadow: 0 0 10px rgba(0,255,255,0.1);
-      text-align: right;
     }
     .title {
-      font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 15px;
-      text-align: center;
       color: #00e6e6;
+      font-size: 20px;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .upload-box {
+      text-align: center;
+      margin: 20px 0;
+    }
+    input[type="file"] {
+      margin-top: 10px;
+    }
+    .countdown {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #ffcc00;
+      text-align: center;
+    }
+    #chart-container {
+      width: 100%;
+      max-width: 600px;
+      margin: auto;
     }
   </style>
 </head>
 <body>
 
-  <div class="header">Bassam AI Pro - الصفحة الموحدة</div>
-  <div class="nav">
-    <button onclick="show('alerts')">التنبيهات</button>
-    <button onclick="show('analysis')">التحليل الفني</button>
-    <button onclick="show('trades')">مركز الصفقات</button>
-    <button onclick="show('ai')">الذكاء الذاتي</button>
-    <button onclick="show('sentiment')">معنويات السوق</button>
-    <button onclick="show('chart')">الشارت</button>
-  </div>
+<div class="header">
+  Bassam AI Pro - النسخة المتكاملة
+  <button onclick="location.reload()" style="float:left;margin:5px;">تحديث البيانات</button>
+</div>
 
-  <div id="alerts" class="section active">
-    <div class="card">
-      <div class="title">التنبيهات الحية</div>
-      <p>تنبيه: فرصة شراء قوية تظهر الآن.</p>
+<div class="kpi-bar">
+  <div>نسبة النجاح: <span id="success-rate">92%</span></div>
+  <div>عدد التنبيهات اليوم: <span id="alerts-count">5</span></div>
+  <div>اتجاه السوق: <span id="market-trend">صعود</span></div>
+</div>
+
+<div class="nav">
+  <button onclick="showSection('alerts')">التنبيهات</button>
+  <button onclick="showSection('analysis')">التحليل الفني</button>
+  <button onclick="showSection('trades')">مركز الصفقات</button>
+  <button onclick="showSection('ai')">الذكاء الذاتي</button>
+  <button onclick="showSection('sentiment')">معنويات السوق</button>
+  <button onclick="showSection('chart')">الشارت</button>
+</div>
+
+<div id="alerts" class="section active">
+  <div class="card">
+    <div class="title">تنبيه جديد</div>
+    <p>صفقة شراء عند 1987 | الهدف 2012 | الستوب 1973</p>
+  </div>
+</div>
+
+<div id="analysis" class="section">
+  <div class="card">
+    <div class="title">التحليل الفني</div>
+    <p>قم بتحميل صورة تحليل فني، وسيقوم Bassam AI Pro بتحليلها بدقة واقتراح صفقة شراء أو بيع، مع تحديد سعر الدخول، الهدف، ووقف الخسارة تلقائيًا.</p>
+    <div class="upload-box">
+      <input type="file" id="imageInput" accept="image/*">
+      <button onclick="analyzeImage()">حلل الصورة</button>
+      <div id="analysisResult"></div>
+    </div>
+    <div class="countdown">الخبر القادم خلال: <span id="countdown">00:10:00</span></div>
+  </div>
+</div>
+<div id="trades" class="section">
+  <div class="card">
+    <div class="title">مركز الصفقات</div>
+    <p>الدخول: 1987 | الهدف: 2012 | الستوب: 1973</p>
+    <div id="chart-container">
+      <canvas id="miniChart"></canvas>
     </div>
   </div>
+</div>
 
-  <div id="analysis" class="section">
-    <div class="card">
-      <div class="title">التحليل الفني</div>
-      <p>أحدث التحليلات الفنية تظهر هنا استناداً إلى المؤشرات السبعة.</p>
-    </div>
+<div id="ai" class="section">
+  <div class="card">
+    <div class="title">الذكاء الذاتي</div>
+    <p>النظام يتعلم من الأداء السابق لتحسين القرارات المستقبلية.</p>
   </div>
+</div>
 
-  <div id="trades" class="section">
-    <div class="card">
-      <div class="title">مركز الصفقات</div>
-      <p>صفقة شراء: الدخول 1985 | الهدف 2010 | الستوب 1970</p>
-    </div>
+<div id="sentiment" class="section">
+  <div class="card">
+    <div class="title">معنويات السوق</div>
+    <p>الوضع الحالي: السوق يميل للصعود.</p>
   </div>
+</div>
 
-  <div id="ai" class="section">
-    <div class="card">
-      <div class="title">الذكاء الذاتي</div>
-      <p>Bassam AI Pro يتعلم من نتائج صفقاته لتحسين القرارات القادمة.</p>
-    </div>
+<div id="chart" class="section">
+  <div class="card">
+    <div class="title">الشارت الحي</div>
+    <div id="tvchart" style="height:400px;"></div>
   </div>
+</div>
 
-  <div id="sentiment" class="section">
-    <div class="card">
-      <div class="title">تحليل معنويات السوق</div>
-      <p>الوضع العام: السوق في اتجاه صاعد حسب البيانات الأخيرة.</p>
-    </div>
-  </div>
+<audio id="alertSound" src="https://assets.mixkit.co/sfx/preview/mixkit-warning-alarm-buzzer-991.mp3" preload="auto"></audio>
+<script>
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
 
-  <div id="chart" class="section">
-    <div class="card">
-      <div class="title">الشارت المباشر</div>
-      <div id="tvchart" style="height:400px;"></div>
-    </div>
-  </div>
+  // تحديث البيانات
+  document.getElementById("success-rate").innerText = "93%";
+  document.getElementById("alerts-count").innerText = "6";
+  document.getElementById("market-trend").innerText = "صعود قوي";
+  document.getElementById("alertSound").play();
 
-  <script>
-    function show(id) {
-      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
+  const speech = new SpeechSynthesisUtterance("فرصة شراء مؤكدة عند مستوى 1987 بهدف 2012 ووقف خسارة 1973");
+  speech.lang = 'ar-SA';
+  speechSynthesis.speak(speech);
+
+  // الشارت المصغر
+  const ctx = document.getElementById('miniChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ["09:00", "09:30", "10:00", "10:30", "11:00"],
+      datasets: [{
+        label: 'XAUUSD',
+        data: [1975, 1980, 1985, 1987, 1992],
+        borderColor: '#00e6e6',
+        tension: 0.4
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { labels: { color: '#ccc' } } },
+      scales: {
+        x: { ticks: { color: "#aaa" } },
+        y: { ticks: { color: "#aaa" } }
+      }
     }
-  </script>
+  });
 
-  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-  <script type="text/javascript">
-    new TradingView.widget({
-      "container_id": "tvchart",
-      "autosize": true,
-      "symbol": "OANDA:XAUUSD",
-      "interval": "30",
-      "timezone": "Etc/UTC",
-      "theme": "dark",
-      "style": "1",
-      "locale": "ar",
-      "toolbar_bg": "#1f1f1f",
-      "enable_publishing": false,
-      "allow_symbol_change": true
+  // العداد التنازلي
+  let seconds = 600;
+  const countdownEl = document.getElementById('countdown');
+  setInterval(() => {
+    const m = String(Math.floor(seconds / 60)).padStart(2, '0');
+    const s = String(seconds % 60).padStart(2, '0');
+    countdownEl.textContent = `00:${m}:${s}`;
+    if (seconds > 0) seconds--;
+  }, 1000);
+
+  // تحليل الصورة
+  async function analyzeImage() {
+    const fileInput = document.getElementById('imageInput');
+    if (!fileInput.files.length) return alert("يرجى اختيار صورة");
+
+    const formData = new FormData();
+    formData.append("file", fileInput.files[0]);
+
+    const res = await fetch("http://127.0.0.1:8000/analyze-image/", {
+      method: "POST",
+      body: formData
     });
-  </script>
+    const data = await res.json();
+    document.getElementById("analysisResult").innerHTML = `
+      <p><strong>الصفقة:</strong> ${data["الصفقة"]}</p>
+      <p><strong>سعر الدخول:</strong> ${data["سعر_الدخول"]}</p>
+      <p><strong>الهدف:</strong> ${data["الهدف"]}</p>
+      <p><strong>وقف الخسارة:</strong> ${data["وقف_الخسارة"]}</p>
+    `;
+  }
+</script>
+
+<script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+<script type="text/javascript">
+  new TradingView.widget({
+    "container_id": "tvchart",
+    "autosize": true,
+    "symbol": "OANDA:XAUUSD",
+    "interval": "30",
+    "timezone": "Etc/UTC",
+    "theme": "dark",
+    "style": "1",
+    "locale": "ar",
+    "toolbar_bg": "#1f1f1f",
+    "enable_publishing": false,
+    "allow_symbol_change": true
+  });
+</script>
 
 </body>
 </html>

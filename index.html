@@ -4,136 +4,163 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bassam AI Pro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #fff;
-      color: #000;
+      font-family: 'Cairo', sans-serif;
+      background-color: #121212;
+      color: #ffffff;
       margin: 0;
-      padding: 20px;
+      padding: 0;
+      text-align: center;
     }
     .header {
+      background-color: #1f1f1f;
+      padding: 20px;
       font-size: 28px;
       font-weight: bold;
-      margin-bottom: 10px;
+      border-bottom: 1px solid #333;
     }
     .sub-header {
       font-size: 18px;
-      color: #555;
-      margin-bottom: 30px;
+      color: #aaa;
+      padding: 10px 0;
     }
     .button-container {
-      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      background-color: #1e1e1e;
+      padding: 10px;
+      border-bottom: 1px solid #333;
     }
     .button {
-      background-color: #007bff;
+      background-color: #333;
       color: white;
       border: none;
       padding: 10px 20px;
       margin: 5px;
+      border-radius: 6px;
       cursor: pointer;
-      border-radius: 5px;
+      font-size: 16px;
+    }
+    .button:hover {
+      background-color: #555;
     }
     .section {
       display: none;
+      padding: 30px 10px;
     }
     .section.active {
       display: block;
-      margin-top: 30px;
+    }
+    .card {
+      background-color: #1f1f1f;
+      margin: 10px auto;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 600px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.05);
     }
     .section-title {
-      font-size: 22px;
-      font-weight: bold;
-      margin-top: 40px;
-      margin-bottom: 10px;
-    }
-    #alertText {
-      color: red;
+      font-size: 20px;
+      margin-bottom: 15px;
       font-weight: bold;
     }
-    .upload-preview {
-      margin-top: 10px;
+    .icon {
+      margin-right: 8px;
     }
   </style>
 </head>
 <body>
-  <div class="header">مرحباً بك في مشروع <br>Bassam AI Pro</div>
-  <div class="sub-header">تم نشر هذه الصفحة باستخدام GitHub Pages.</div>
 
-  <div style="background-color:#000; color:#fff;" class="sub-header">Bassam AI Pro</div>
-  <div class="sub-header">تحكم ذكي في التحليل والتنبيهات</div>
+  <div class="header">Bassam AI Pro</div>
+  <div class="sub-header">واجهة احترافية داكنة مع أقسام منظمة</div>
 
   <div class="button-container">
-    <button class="button" onclick="showSection('alerts')">التنبيهات الحية</button>
-    <button class="button" onclick="showSection('analysis')">التحليلات الفنية</button>
-    <button class="button" onclick="showSection('trades')">نظام الصفقات</button>
-    <button class="button" onclick="showSection('chart')">الشارت</button>
-    <button class="button" onclick="showSection('image-analysis')">تحليل بالصور</button>
+    <button class="button" onclick="showSection('alerts')"><i class="fas fa-bell icon"></i>التنبيهات</button>
+    <button class="button" onclick="showSection('analysis')"><i class="fas fa-chart-line icon"></i>التحليلات</button>
+    <button class="button" onclick="showSection('trades')"><i class="fas fa-exchange-alt icon"></i>الصفقات</button>
+    <button class="button" onclick="showSection('chart')"><i class="fas fa-chart-area icon"></i>الشارت</button>
+    <button class="button" onclick="showSection('images')"><i class="fas fa-image icon"></i>تحليل بالصور</button>
   </div>
 
   <div id="alerts" class="section active">
-    <div class="section-title">التنبيهات الحية</div>
-    <p id="alertText">سيتم عرض التنبيهات هنا بشكل مباشر.</p>
+    <div class="card">
+      <div class="section-title"><i class="fas fa-bell icon"></i>التنبيهات الحية</div>
+      <p id="alertText">يتم تحديث التنبيهات هنا كل 5 ثوانٍ...</p>
+    </div>
   </div>
 
   <div id="analysis" class="section">
-    <div class="section-title">التحليلات الفنية</div>
-    <p>تظهر التحليلات الفنية اليومية هنا.</p>
+    <div class="card">
+      <div class="section-title"><i class="fas fa-chart-line icon"></i>التحليلات الفنية</div>
+      <p>هنا ستظهر التحليلات الفنية المحدثة.</p>
+    </div>
   </div>
 
   <div id="trades" class="section">
-    <div class="section-title">نظام الصفقات</div>
-    <p>تابع نظام الصفقات المقترحة هنا.</p>
+    <div class="card">
+      <div class="section-title"><i class="fas fa-exchange-alt icon"></i>نظام الصفقات</div>
+      <p>تابع توصيات الشراء والبيع هنا.</p>
+    </div>
   </div>
 
   <div id="chart" class="section">
-    <div class="section-title">الشارت الحي</div>
-    <iframe src="https://www.tradingview.com/chart/" width="100%" height="400" frameborder="0" allowfullscreen></iframe>
+    <div class="card">
+      <div class="section-title"><i class="fas fa-chart-area icon"></i>الرسم البياني</div>
+      <div id="tvchart" style="height:400px;"></div>
+    </div>
   </div>
 
-  <div id="image-analysis" class="section">
-    <div class="section-title">تحليل باستخدام الصور</div>
-    <input type="file" id="imageUpload" accept="image/*" onchange="previewImage(event)" />
-    <div class="upload-preview">
-      <img id="imagePreview" src="" alt="صورة التحليل" style="max-width: 100%; display: none;"/>
+  <div id="images" class="section">
+    <div class="card">
+      <div class="section-title"><i class="fas fa-image icon"></i>رفع صورة تحليل</div>
+      <input type="file" accept="image/*">
+      <div style="margin-top: 15px;">
+        <button class="button" style="background-color:green;">شراء</button>
+        <button class="button" style="background-color:crimson;">بيع</button>
+      </div>
     </div>
-    <p>توصية:</p>
-    <button onclick="alert('تم تحديد صفقة شراء')">شراء</button>
-    <button onclick="alert('تم تحديد صفقة بيع')">بيع</button>
   </div>
 
   <script>
     function showSection(id) {
-      document.querySelectorAll('.section').forEach(section => {
-        section.classList.remove('active');
-      });
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
       document.getElementById(id).classList.add('active');
     }
 
-    function previewImage(event) {
-      const reader = new FileReader();
-      reader.onload = function(){
-        const output = document.getElementById('imagePreview');
-        output.src = reader.result;
-        output.style.display = 'block';
-      };
-      reader.readAsDataURL(event.target.files[0]);
-    }
-
-    // تنبيهات مباشرة تجريبية
     const alerts = [
       "تنبيه: فرصة شراء قوية على الذهب الآن.",
       "تنبيه: بيع سكالبينج بناءً على RSI ومؤشر ستوكاستك.",
-      "تنبيه: تم كسر مقاومة قوية على الذهب!"
+      "تنبيه: تم كسر مستوى مقاومة هام على الذهب."
     ];
     let index = 0;
     function updateAlert() {
-      document.getElementById("alertText").innerText = alerts[index];
+      document.getElementById('alertText').innerText = alerts[index];
       index = (index + 1) % alerts.length;
     }
     setInterval(updateAlert, 5000);
     window.onload = updateAlert;
   </script>
+
+  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+  <script type="text/javascript">
+    new TradingView.widget({
+      "container_id": "tvchart",
+      "autosize": true,
+      "symbol": "OANDA:XAUUSD",
+      "interval": "30",
+      "timezone": "Etc/UTC",
+      "theme": "dark",
+      "style": "1",
+      "locale": "ar",
+      "toolbar_bg": "#1f1f1f",
+      "enable_publishing": false,
+      "allow_symbol_change": true
+    });
+  </script>
+
 </body>
 </html>

@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bassam AI Pro</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bassam AI Pro - الصفحة الموحدة</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
     body {
       font-family: 'Cairo', sans-serif;
       background-color: #121212;
-      color: #ffffff;
+      color: white;
       margin: 0;
       padding: 0;
       text-align: center;
@@ -18,35 +18,29 @@
     .header {
       background-color: #1f1f1f;
       padding: 20px;
-      font-size: 28px;
+      font-size: 26px;
       font-weight: bold;
       border-bottom: 1px solid #333;
     }
-    .sub-header {
-      font-size: 18px;
-      color: #aaa;
-      padding: 10px 0;
-    }
-    .button-container {
+    .nav {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       background-color: #1e1e1e;
       padding: 10px;
-      border-bottom: 1px solid #333;
+      border-bottom: 1px solid #444;
     }
-    .button {
+    .nav button {
       background-color: #333;
       color: white;
       border: none;
-      padding: 10px 20px;
       margin: 5px;
+      padding: 10px 20px;
       border-radius: 6px;
       cursor: pointer;
-      font-size: 16px;
     }
-    .button:hover {
-      background-color: #555;
+    .nav button:hover {
+      background-color: #00b3b3;
     }
     .section {
       display: none;
@@ -56,120 +50,82 @@
       display: block;
     }
     .card {
-      background-color: #1f1f1f;
-      margin: 10px auto;
+      background: #1f1f1f;
       padding: 20px;
       border-radius: 10px;
-      max-width: 600px;
-      box-shadow: 0 0 10px rgba(255,255,255,0.05);
+      margin: 20px auto;
+      max-width: 700px;
+      box-shadow: 0 0 10px rgba(0,255,255,0.1);
       text-align: right;
     }
-    .section-title {
+    .title {
       font-size: 20px;
+      font-weight: bold;
       margin-bottom: 15px;
-      font-weight: bold;
       text-align: center;
-    }
-    .icon {
-      margin-left: 8px;
-    }
-    .trade-label {
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-    .trade-value {
-      margin-bottom: 8px;
-    }
-    .trade-button {
-      background-color: #00e6e6;
-      color: #000;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 16px;
-      margin-top: 15px;
+      color: #00e6e6;
     }
   </style>
 </head>
 <body>
 
-  <div class="header">Bassam AI Pro</div>
-  <div class="sub-header">واجهة احترافية داكنة + بطاقات صفقات تفاعلية</div>
-
-  <div class="button-container">
-    <button class="button" onclick="showSection('alerts')"><i class="fas fa-bell icon"></i>التنبيهات</button>
-    <button class="button" onclick="showSection('analysis')"><i class="fas fa-chart-line icon"></i>التحليلات</button>
-    <button class="button" onclick="showSection('trades')"><i class="fas fa-exchange-alt icon"></i>الصفقات</button>
-    <button class="button" onclick="showSection('chart')"><i class="fas fa-chart-area icon"></i>الشارت</button>
-    <button class="button" onclick="showSection('images')"><i class="fas fa-image icon"></i>تحليل بالصور</button>
+  <div class="header">Bassam AI Pro - الصفحة الموحدة</div>
+  <div class="nav">
+    <button onclick="show('alerts')">التنبيهات</button>
+    <button onclick="show('analysis')">التحليل الفني</button>
+    <button onclick="show('trades')">مركز الصفقات</button>
+    <button onclick="show('ai')">الذكاء الذاتي</button>
+    <button onclick="show('sentiment')">معنويات السوق</button>
+    <button onclick="show('chart')">الشارت</button>
   </div>
 
   <div id="alerts" class="section active">
     <div class="card">
-      <div class="section-title"><i class="fas fa-bell icon"></i>التنبيهات الحية</div>
-      <p id="alertText">يتم تحديث التنبيهات هنا كل 5 ثوانٍ...</p>
+      <div class="title">التنبيهات الحية</div>
+      <p>تنبيه: فرصة شراء قوية تظهر الآن.</p>
     </div>
   </div>
 
   <div id="analysis" class="section">
     <div class="card">
-      <div class="section-title"><i class="fas fa-chart-line icon"></i>التحليلات الفنية</div>
-      <p>هنا ستظهر التحليلات الفنية المحدثة.</p>
+      <div class="title">التحليل الفني</div>
+      <p>أحدث التحليلات الفنية تظهر هنا استناداً إلى المؤشرات السبعة.</p>
     </div>
   </div>
 
   <div id="trades" class="section">
     <div class="card">
-      <div class="section-title"><i class="fas fa-exchange-alt icon"></i>صفقة شراء تفاعلية</div>
-      <div class="trade-label">نوع الصفقة:</div>
-      <div class="trade-value">شراء</div>
-      <div class="trade-label">سعر الدخول:</div>
-      <div class="trade-value">1987</div>
-      <div class="trade-label">الهدف (Take Profit):</div>
-      <div class="trade-value">2012</div>
-      <div class="trade-label">وقف الخسارة (Stop Loss):</div>
-      <div class="trade-value">1973</div>
-      <button class="trade-button">تنفيذ لاحقاً</button>
+      <div class="title">مركز الصفقات</div>
+      <p>صفقة شراء: الدخول 1985 | الهدف 2010 | الستوب 1970</p>
+    </div>
+  </div>
+
+  <div id="ai" class="section">
+    <div class="card">
+      <div class="title">الذكاء الذاتي</div>
+      <p>Bassam AI Pro يتعلم من نتائج صفقاته لتحسين القرارات القادمة.</p>
+    </div>
+  </div>
+
+  <div id="sentiment" class="section">
+    <div class="card">
+      <div class="title">تحليل معنويات السوق</div>
+      <p>الوضع العام: السوق في اتجاه صاعد حسب البيانات الأخيرة.</p>
     </div>
   </div>
 
   <div id="chart" class="section">
     <div class="card">
-      <div class="section-title"><i class="fas fa-chart-area icon"></i>الرسم البياني</div>
+      <div class="title">الشارت المباشر</div>
       <div id="tvchart" style="height:400px;"></div>
     </div>
   </div>
 
-  <div id="images" class="section">
-    <div class="card">
-      <div class="section-title"><i class="fas fa-image icon"></i>رفع صورة تحليل</div>
-      <input type="file" accept="image/*">
-      <div style="margin-top: 15px;">
-        <button class="button" style="background-color:green;">شراء</button>
-        <button class="button" style="background-color:crimson;">بيع</button>
-      </div>
-    </div>
-  </div>
-
   <script>
-    function showSection(id) {
+    function show(id) {
       document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
       document.getElementById(id).classList.add('active');
     }
-
-    const alerts = [
-      "تنبيه: فرصة شراء قوية على الذهب الآن.",
-      "تنبيه: بيع سكالبينج بناءً على RSI ومؤشر ستوكاستك.",
-      "تنبيه: تم كسر مستوى مقاومة هام على الذهب."
-    ];
-    let index = 0;
-    function updateAlert() {
-      document.getElementById('alertText').innerText = alerts[index];
-      index = (index + 1) % alerts.length;
-    }
-    setInterval(updateAlert, 5000);
-    window.onload = updateAlert;
   </script>
 
   <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>

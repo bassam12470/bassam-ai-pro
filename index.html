@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bassam AI Pro</title>
   <style>
     body {
@@ -30,16 +30,16 @@
       margin-bottom: 10px;
     }
     .button-container {
-      margin: 20px 0;
+      margin-bottom: 20px;
     }
     .button {
       background-color: #007bff;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
+      color: white;
+      padding: 10px 15px;
       margin: 5px;
+      border: none;
+      border-radius: 6px;
       cursor: pointer;
-      border-radius: 5px;
       font-size: 16px;
     }
     .button:hover {
@@ -51,19 +51,18 @@
     .section.active {
       display: block;
     }
-    #live-alert {
-      margin-top: 20px;
+    #liveAlert {
+      font-size: 16px;
+      color: red;
+      margin-top: 15px;
       font-weight: bold;
-      color: #d9534f;
-      font-size: 18px;
     }
   </style>
 </head>
 <body>
 
-  <div class="header">مرحباً بك في مشروع Bassam AI Pro</div>
+  <div class="header">مرحباً بك في مشروع <br>Bassam AI Pro</div>
   <div class="sub-header">تم نشر هذه الصفحة باستخدام GitHub Pages.</div>
-
   <div style="background-color: #000; color: #fff;" class="sub-header">Bassam AI Pro</div>
   <div class="sub-header">تحكم ذكي في التحليل والتنبيهات</div>
 
@@ -75,7 +74,7 @@
 
   <div id="alerts" class="section active">
     <div class="section-title">التنبيهات الحية</div>
-    <div id="live-alert">سيتم عرض التنبيهات هنا بشكل مباشر.</div>
+    <p id="liveAlert">سيتم عرض التنبيهات هنا بشكل مباشر.</p>
   </div>
 
   <div id="analysis" class="section">
@@ -95,23 +94,24 @@
       });
       document.getElementById(id).classList.add('active');
     }
+  </script>
 
+  <script>
     const alerts = [
       "تنبيه: فرصة شراء قوية على الذهب الآن",
-      "تنبيه: بيع سكالبينج بناءً على RSI ومؤشر ستوكاستك",
-      "تنبيه: تم كسر مستوى مقاومة هام على الذهب",
-      "تنبيه: تراجع مفاجئ بسبب خبر اقتصادي - تابع الحركة"
+      "تنبيه: بيع سكالبينج بعد إشارات RSI سلبية",
+      "تنبيه: كسر مقاومة هامة على الذهب"
     ];
-
     let index = 0;
+
     function updateAlert() {
-      const alertDiv = document.getElementById('live-alert');
+      const alertDiv = document.getElementById("liveAlert");
       alertDiv.innerText = alerts[index];
       index = (index + 1) % alerts.length;
     }
+
     setInterval(updateAlert, 5000);
     window.onload = updateAlert;
   </script>
-
 </body>
 </html>

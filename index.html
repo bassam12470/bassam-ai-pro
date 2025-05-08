@@ -34,12 +34,13 @@
     }
     .button {
       background-color: #007bff;
-      color: white;
+      color: #fff;
       border: none;
       padding: 10px 20px;
       margin: 5px;
-      border-radius: 5px;
       cursor: pointer;
+      border-radius: 5px;
+      font-size: 16px;
     }
     .button:hover {
       background-color: #0056b3;
@@ -47,8 +48,14 @@
     .section {
       display: none;
     }
-    .active {
+    .section.active {
       display: block;
+    }
+    #live-alert {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #d9534f;
+      font-size: 18px;
     }
   </style>
 </head>
@@ -57,9 +64,7 @@
   <div class="header">مرحباً بك في مشروع Bassam AI Pro</div>
   <div class="sub-header">تم نشر هذه الصفحة باستخدام GitHub Pages.</div>
 
-  <div style="background-color: #000; color: #fff;" class="sub-header">
-    Bassam AI Pro
-  </div>
+  <div style="background-color: #000; color: #fff;" class="sub-header">Bassam AI Pro</div>
   <div class="sub-header">تحكم ذكي في التحليل والتنبيهات</div>
 
   <div class="button-container">
@@ -70,7 +75,7 @@
 
   <div id="alerts" class="section active">
     <div class="section-title">التنبيهات الحية</div>
-    <p>سيتم عرض التنبيهات هنا بشكل مباشر.</p>
+    <div id="live-alert">سيتم عرض التنبيهات هنا بشكل مباشر.</div>
   </div>
 
   <div id="analysis" class="section">
@@ -90,17 +95,17 @@
       });
       document.getElementById(id).classList.add('active');
     }
-  </script>
 
-  <script>
     const alerts = [
-      "تنبيه: فرصة شراء قوية على الذهب الآن.",
-      "تنبيه: بيع عند مستوى RSI مرتفع - إشارة تصحيح.",
-      "تنبيه: تم كسر مستوى مقاومة هام على الذهب!"
+      "تنبيه: فرصة شراء قوية على الذهب الآن",
+      "تنبيه: بيع سكالبينج بناءً على RSI ومؤشر ستوكاستك",
+      "تنبيه: تم كسر مستوى مقاومة هام على الذهب",
+      "تنبيه: تراجع مفاجئ بسبب خبر اقتصادي - تابع الحركة"
     ];
+
     let index = 0;
     function updateAlert() {
-      const alertDiv = document.getElementById("alerts").querySelector("p");
+      const alertDiv = document.getElementById('live-alert');
       alertDiv.innerText = alerts[index];
       index = (index + 1) % alerts.length;
     }

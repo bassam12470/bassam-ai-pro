@@ -10,3 +10,77 @@
   <p style="text-align:center;">تم نشر هذه الصفحة باستخدام GitHub Pages.</p>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bassam AI Pro</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      direction: rtl;
+      text-align: center;
+      background-color: #f9f9f9;
+    }
+    header {
+      background-color: #222;
+      color: white;
+      padding: 15px;
+    }
+    nav button {
+      margin: 10px;
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    nav button:hover {
+      background-color: #0056b3;
+    }
+    .section {
+      display: none;
+      padding: 20px;
+    }
+    .active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Bassam AI Pro</h1>
+    <p>تحكم ذكي في التحليل والتنبيهات</p>
+  </header>
+
+  <nav>
+    <button onclick="showSection('alerts')">التنبيهات الحية</button>
+    <button onclick="showSection('analysis')">التحليلات الفنية</button>
+    <button onclick="showSection('trades')">نظام الصفقات</button>
+  </nav>
+
+  <section id="alerts" class="section active">
+    <h2>التنبيهات الحية</h2>
+    <p>سيتم عرض التنبيهات هنا بشكل مباشر.</p>
+  </section>
+
+  <section id="analysis" class="section">
+    <h2>التحليلات الفنية</h2>
+    <p>يتم تحليل السوق تلقائيًا وفق المؤشرات الفنية.</p>
+  </section>
+
+  <section id="trades" class="section">
+    <h2>نظام الصفقات</h2>
+    <p>اقتراحات صفقات بناءً على الذكاء الاصطناعي.</p>
+  </section>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+  </script>
+</body>
+</html>
